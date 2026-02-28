@@ -198,9 +198,11 @@ button:disabled {
 
 /* DARK MODE BUTTON */
 .theme-toggle {
+  width: 50px;
+  background: var(--card);
   position: fixed;
   top: 15px;
-  right: 15px;
+  /* right: 15px; */
   font-size: 22px;
   cursor: pointer;
 }
