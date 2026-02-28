@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/cb400eb0f7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+
+    <div class="container">
+      <h2>Register</h2>
+
+      <form id="myForm">
+        <!-- Name -->
+        <div class="field">
+          <input type="text" id="name" required />
+          <label>Full Name</label>
+          <small class="error" id="nameError"></small>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <input type="text" id="email" required />
+          <label>Email</label>
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <input type="password" id="password" required />
+          <label>Password</label>
+
+          <span class="eye">
+            <!-- EYE -->
+            <i class="fa-regular fa-eye" id="togglePassword"></i>
+          </span>
+          <div class="strength-bar">
+            <div id="strengthFill"></div>
+          </div>
+
+          <small id="strengthText"></small>
+        </div>
+
+        <!-- Confirm -->
+        <div class="field">
+          <input type="password" id="confirmPassword" required />
+          <label>Confirm Password</label>
+          <span class="eye-2">
+            <!-- EYE -->
+            <i class="fa-regular fa-eye" id="toggleConfirmPassword"></i>
+          </span>
+          <small class="error" id="confirmError"></small>
+        </div>
+        <button type="submit" id="submitBtn" disabled>Register</button>
+      </form>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

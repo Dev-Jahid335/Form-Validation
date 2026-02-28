@@ -1,0 +1,173 @@
+:root {
+  --bg: #f4f6fa;
+  --card: #fff;
+  --text: #111;
+  --border: #ccc;
+  --success: #2ecc71;
+  --error: #e74c3c;
+}
+
+body.dark {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #eee;
+  --border: #444;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: var(--card);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* FLOATING LABEL */
+.field {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+}
+
+.field input:focus {
+  outline: none;
+}
+
+.field label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s;
+  background: var(--card);
+  padding: 0 6px;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 12px;
+  color: var(--success);
+}
+
+/* VALID STATES */
+.field input.valid {
+  border-color: var(--success);
+}
+
+.field input.invalid {
+  border-color: var(--error);
+}
+
+.error {
+  color: var(--error);
+  font-size: 12px;
+}
+
+.eye,
+.eye-2 {
+  position: absolute;
+  right: 15px;
+  top: 15px; /* Adjust based on your input height */
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Hide icons initially */
+#togglePassword,
+#toggleConfirmPassword {
+  display: none;
+  color: #666;
+}
+
+/* Add space inside input so text doesn't overlap the eye */
+.field input {
+  padding-right: 40px;
+}
+/* EYE ICON */
+/* .eye {
+  color: #444;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-81%);
+  cursor: pointer;
+  display: none;
+}
+.eye-2 {
+  color: #444;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-47%);
+  cursor: pointer;
+} */
+/* STRENGTH BAR */
+.strength-bar {
+  height: 6px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+#strengthFill {
+  height: 100%;
+  width: 0%;
+  transition: 0.4s;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--success);
+  color: white;
+  font-size: 16px;
+}
+
+button:disabled {
+  background: gray;
+}
+
+/* DARK MODE BUTTON */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+/* #password {
+  padding-right: 45px;
+} */
