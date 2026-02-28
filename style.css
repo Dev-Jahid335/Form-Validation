@@ -11,12 +11,13 @@ body.dark {
   --bg: #121212;
   --card: #1e1e1e;
   --text: #eee;
-  --border: #444;
+  --border: #ccc;
 }
 
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
+  /* font-family: Arial, sans-serif; */
 }
 
 body {
@@ -26,14 +27,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Added padding for mobile screen edges */
+  padding: 20px;
+  margin: 0;
 }
 
 .container {
   background: var(--card);
   padding: 30px;
+  /* Ensure container is never wider than the screen */
   width: 100%;
   max-width: 400px;
   border-radius: 12px;
+  /* Added shadow for better depth on mobile */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
@@ -43,40 +50,52 @@ h2 {
 
 /* FLOATING LABEL */
 .field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px; /* This is the EXACT distance between inputs */
   position: relative;
-  margin-bottom: 22px;
 }
-
-.field input {
+.input-group {
+  position: relative; /* This is now the anchor for the label and eye */
+  width: 100%;
+  z-index: 3;
+}
+.input-group input {
   width: 100%;
   padding: 14px;
+  padding-right: 45px;
   border: 2px solid var(--border);
   border-radius: 8px;
   background: transparent;
   color: var(--text);
+  font-size: 16px;
+  outline: none;
 }
-
 .field input:focus {
   outline: none;
 }
 
-.field label {
+/* LABEL POSITIONING */
+.input-group label {
   position: absolute;
   left: 12px;
   top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  pointer-events: none;
-  transition: 0.3s;
+  transform: translateY(-50%); /* Perfectly centered vertically */
   background: var(--card);
   padding: 0 6px;
+  color: #888;
+  transition: 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.field input:focus + label,
-.field input:not(:placeholder-shown) + label {
-  top: -8px;
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: 0; /* Moves to the top border */
   font-size: 12px;
   color: var(--success);
+  font-weight: bold;
+  transform: translateY(-50%); /* Keeps it centered on the top line */
 }
 
 /* VALID STATES */
@@ -88,18 +107,42 @@ h2 {
   border-color: var(--error);
 }
 
+/* OPTIONAL: Highlight border on focus */
+.field input:focus {
+  border-color: var(--success);
+}
+.error,
+.strength-bar,
+#strengthText {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin: 0; /* Remove margins to keep math simple */
+}
+#strengthText,
+.error {
+  top: 58px; /* Positioned below the strength bar */
+  font-size: 11px;
+  line-height: 1;
+}
 .error {
   color: var(--error);
   font-size: 12px;
 }
 
-.eye,
-.eye-2 {
+/* 3. STABLE EYE ICON POSITIONING */
+.eye {
   position: absolute;
   right: 15px;
-  top: 15px; /* Adjust based on your input height */
+  top: 50%;
+  transform: translateY(-50%); /* Always centered vertically */
   cursor: pointer;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  color: #666;
+  height: 100%; /* Ensures a large clickable area */
 }
 
 /* Hide icons initially */
@@ -113,39 +156,32 @@ h2 {
 .field input {
   padding-right: 40px;
 }
-/* EYE ICON */
-/* .eye {
-  color: #444;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-81%);
-  cursor: pointer;
-  display: none;
-}
-.eye-2 {
-  color: #444;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-47%);
-  cursor: pointer;
-} */
+
 /* STRENGTH BAR */
 .strength-bar {
+  top: 55px; /* Positioned 2px below the input (assuming input height is 48px) */
   height: 6px;
-  background: #ddd;
+  background: #e0e0e0;
   border-radius: 10px;
-  overflow: hidden;
-  margin-top: 8px;
+  z-index: 2;
 }
-
+body.dark .strength-bar {
+  background: #333; /* Visible in dark mode */
+}
+.field:has(.strength-bar) {
+  margin-bottom: 22px;
+}
 #strengthFill {
   height: 100%;
-  width: 0%;
+  width: 0%; /* This changes via JS */
   transition: 0.4s;
 }
-
+#strengthText {
+  display: block;
+  min-height: 15px; /* Prevents layout jumping when text appears */
+  margin-top: 4px;
+  font-size: 12px;
+}
 button {
   width: 100%;
   padding: 12px;
@@ -168,6 +204,18 @@ button:disabled {
   font-size: 22px;
   cursor: pointer;
 }
-/* #password {
-  padding-right: 45px;
-} */
+
+/* Ensure inputs don't zoom in on iOS (font-size should be at least 16px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  .field input {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

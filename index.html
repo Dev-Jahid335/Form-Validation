@@ -19,42 +19,56 @@
       <form id="myForm">
         <!-- Name -->
         <div class="field">
-          <input type="text" id="name" required />
-          <label>Full Name</label>
+          <div class="input-group">
+            <input type="text" id="name" placeholder=" " required />
+            <label>Full Name</label>
+          </div>
+
           <small class="error" id="nameError"></small>
         </div>
 
         <!-- Email -->
         <div class="field">
-          <input type="text" id="email" required />
-          <label>Email</label>
+          <div class="input-group">
+            <input type="text" id="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+
           <small class="error" id="emailError"></small>
         </div>
 
         <!-- Password -->
         <div class="field">
-          <input type="password" id="password" required />
-          <label>Password</label>
+          <div class="input-group">
+            <input type="password" id="password" placeholder=" " required />
+            <label>Password</label>
+            <span class="eye">
+              <i class="fa-regular fa-eye" id="togglePassword"></i>
+            </span>
+          </div>
 
-          <span class="eye">
-            <!-- EYE -->
-            <i class="fa-regular fa-eye" id="togglePassword"></i>
-          </span>
+          <!-- Strength bar is OUTSIDE the input-group but INSIDE the field -->
           <div class="strength-bar">
             <div id="strengthFill"></div>
           </div>
-
           <small id="strengthText"></small>
         </div>
-
         <!-- Confirm -->
         <div class="field">
-          <input type="password" id="confirmPassword" required />
-          <label>Confirm Password</label>
-          <span class="eye-2">
-            <!-- EYE -->
-            <i class="fa-regular fa-eye" id="toggleConfirmPassword"></i>
-          </span>
+          <div class="input-group">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder=" "
+              required
+            />
+            <label>Confirm Password</label>
+            <span class="eye">
+              <!-- EYE -->
+              <i class="fa-regular fa-eye" id="toggleConfirmPassword"></i>
+            </span>
+          </div>
+
           <small class="error" id="confirmError"></small>
         </div>
         <button type="submit" id="submitBtn" disabled>Register</button>
