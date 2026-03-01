@@ -17,7 +17,6 @@ body.dark {
 * {
   box-sizing: border-box;
   font-family: "Segoe UI", Arial, sans-serif;
-  /* font-family: Arial, sans-serif; */
 }
 
 body {
@@ -27,6 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 60px; /* Adjust based on button size */
   /* Added padding for mobile screen edges */
   padding: 20px;
   margin: 0;
@@ -200,22 +200,26 @@ button:disabled {
 }
 
 /* DARK MODE BUTTON */
+/* Position the button in the top-right corner */
 .theme-toggle {
-  /* all: unset; Resets all default button styling */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--card);
   position: fixed;
-  top: 15px;
-  font-size: 22px;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Keeps it above everything */
+  padding: 10px;
   cursor: pointer;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 
 /* Ensure inputs don't zoom in on iOS (font-size should be at least 16px) */
 @media (max-width: 480px) {
   .container {
-    padding: 20px;
+    margin-top: 20px; /* Extra breathing room */
+    width: 90%;
   }
 
   .field input {
@@ -224,5 +228,9 @@ button:disabled {
 
   h2 {
     font-size: 1.5rem;
+  }
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
   }
 }
